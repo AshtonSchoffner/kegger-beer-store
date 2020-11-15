@@ -2,20 +2,20 @@
 
 one:
   name: MyString
-  size: MyString
-  alcohol_vol: 1.5
   price: 1.5
+  alcohol_vol: 1.5
+  size: 1
   quantity: 1
   description: MyText
-  category: one
   brewer: one
+  subcategory: one
 
 two:
   name: MyString
-  size: MyString
-  alcohol_vol: 1.5
   price: 1.5
+  alcohol_vol: 1.5
+  size: 1
   quantity: 1
   description: MyText
-  category: two
   brewer: two
+  subcategory: two
