@@ -1,0 +1,18 @@
+<div>
+  <h3>Brewers</h3>
+  <%= paginate(@brewers) %>
+    <div class="row">
+      <% @brewers.each do |brewer| %>
+        <div class="col-4 py-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to brewer.name, brewer %></h5>
+
+              <p class="card-text"><%= brewer.country.name %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <%= paginate(@brewers) %>
+</div>
