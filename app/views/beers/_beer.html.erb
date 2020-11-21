@@ -1,0 +1,25 @@
+<div class="col-4 py-3">
+  <div class="card">
+    <div class="card-body">
+      <% if beer_link %>
+        <h5 class="card-title"><%= link_to beer.name, beer %></h5>
+      <% else %>
+        <h5 class="card-title"><%= beer.name %></h5>
+      <% end %>
+
+      <p class="card-text"><%= beer.size %></p>
+
+      <p class="card-text">Price: $<%= beer.price %></p>
+
+      <% if show_details %>
+        <p><%= beer.description %></p>
+        <p>SubCategory: <%= beer.subcategory.name %></p>
+        <p>Category: <%= beer.subcategory.category.name %></p>
+        <p><%= link_to beer.brewer.name, beer.brewer %></p>
+        <p>Alchohol Volume:<%= beer.alcohol_vol %>%</p>
+        <p><%= beer.quantity %></p>
+        <p><%= beer.brewer.country.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
