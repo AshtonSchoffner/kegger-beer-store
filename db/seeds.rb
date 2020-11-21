@@ -11,6 +11,7 @@ require "csv"
 file = File.join(Rails.root, "db", "liquor_mart.csv")
 data = File.read(file)
 beer_data = CSV.parse(data, headers: true)
+blank_values = ["null", "", "NULL"]
 
 Beer.destroy_all
 Brewer.destroy_all
@@ -29,7 +30,8 @@ beer_data.each do |beer|
   end
 
   name = beer["brewer"]
-  name = beer["brewer2"] if name == "null"
+  name = beer["brewer2"] if blank_values.include?(name)
+  name = "Unknown Brewer" if blank_values.include?(name)
 
   brewer = country.brewer.find_or_create_by(
     name: name
@@ -61,16 +63,15 @@ beer_data.each do |beer|
   end
 
   description = beer["description"]
-  description = beer["description2"] if description == "null"
-
-  price = beer["retail_price"] if price == "null"
+  description = beer["description2"] if blank_values.include?(description)
 
   if beer["retail_price"] != "null"
-    prices = beer["retail_price"].split("REG.")
+    prices = beer["retail_price"].split("REG. $")
     price = prices[1].strip
   else
-    price = beer["price"]
+    price = beer["price"].strip
   end
+  price.delete!("$")
 
   sizes = beer["size"].split("|")
   size = sizes[2]
@@ -81,7 +82,7 @@ beer_data.each do |beer|
     description:    description,
     subcategory_id: subcategory.id,
     alcohol_vol:    beer["alcohol"],
-    price:          price,
+    price:          price.to_f,
     size:           size.strip,
     quantity:       rand(151)
   )
