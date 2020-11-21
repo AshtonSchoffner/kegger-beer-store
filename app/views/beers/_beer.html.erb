@@ -9,7 +9,7 @@
 
       <p class="card-text"><%= beer.size %></p>
 
-      <p class="card-text">Price: $<%= beer.price %></p>
+      <p class="card-text">Price: <%= number_to_currency(beer.price) %></p>
 
       <% if show_details %>
         <p><%= beer.description %></p>
