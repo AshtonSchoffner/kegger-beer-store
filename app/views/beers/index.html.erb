@@ -1,0 +1,8 @@
+<div>
+  <h3>Available Beers</h3>
+  <%= paginate(@beers) %>
+    <div class="row">
+      <%= render partial: "beer", collection: @beers, locals: {show_details: false, beer_link: true} %>
+    </div>
+  <%= paginate(@beers) %>
+</div>
