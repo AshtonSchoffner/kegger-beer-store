@@ -1,0 +1,11 @@
+<div>
+  <div class="row">
+    <h3 class="col"><%= link_to @subcategory.category.name, @subcategory.category %></h3>
+    <h3 class="col text-right"><%= @subcategory.name %></h3>
+  </div>
+  <%= paginate(@beers) %>
+    <div class="row">
+      <%= render partial: "beers/beer", collection: @beers, locals: {beer_link: true, show_details: false} %>
+    </div>
+  <%= paginate(@beers) %>
+</div>
