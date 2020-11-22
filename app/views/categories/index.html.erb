@@ -1,0 +1,15 @@
+<div>
+  <h3>Categories</h3>
+    <div class=>
+      <% @categories.each do |category| %>
+        <details>
+          <summary><%= link_to category.name, category %></summary>
+          <ul>
+            <% category.subcategories.each do |subcategory| %>
+              <li><%= link_to subcategory.name, subcategory %></li>
+            <% end %>
+          </ul>
+        </details>
+      <% end %>
+    </div>
+</div>
