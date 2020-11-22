@@ -13,10 +13,10 @@
 
       <% if show_details %>
         <p><%= beer.description %></p>
+        <p>Category: <%= link_to beer.subcategory.category.name, beer.subcategory.category %></p>
         <p>SubCategory: <%= beer.subcategory.name %></p>
-        <p>Category: <%= beer.subcategory.category.name %></p>
         <p><%= link_to beer.brewer.name, beer.brewer %></p>
-        <p>Alchohol Volume:<%= beer.alcohol_vol %>%</p>
+        <p>Alchohol Volume: <%= beer.alcohol_vol %>%</p>
         <p><%= beer.quantity %></p>
         <p><%= beer.brewer.country.name %></p>
       <% end %>
