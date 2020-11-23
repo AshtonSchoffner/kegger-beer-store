@@ -1,0 +1,8 @@
+<div class="container">
+  <h3>Searching for: <%= params[:keywords] %></h3>
+  <h3>Found: <%= pluralize(@beers.count, "Beer") %></h3>
+  <h3>Category: /</h3>
+  <div class="row">
+    <%= render partial: "beer", collection: @beers, locals: {beer_link: true, show_details: false} %>
+  </div>
+</div>

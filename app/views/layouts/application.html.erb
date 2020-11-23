@@ -16,11 +16,25 @@
         <h1>Keggers Beer Store</h1>
       </div>
 
-      <ul class="nav nav-tabs nav-fill justify-content-center pb2 pt-4">
-        <li class="nav-item"><%= link_to "Beers", beers_path %></li>
-        <li class="nav-item"><%= link_to "Brewers", brewers_path %></li>
-        <li class="nav-item"><%= link_to "Categories", categories_path %></li>
-      </ul>
+      <div>
+        <ul class="nav nav-tabs nav-fill justify-content-center pb2 pt-4">
+          <li class="nav-item"><%= link_to "Beers", beers_path %></li>
+          <li class="nav-item"><%= link_to "Brewers", brewers_path %></li>
+          <li class="nav-item"><%= link_to "Categories", categories_path %></li>
+        </ul>
+      </div>
+
+      <%= form_with(url: search_beers_path, method: :get, local: true) do %>
+        <div>
+          <div>
+            <%= text_field_tag(:keywords, nil, placeholder: "Search Beers") %>
+          </div>
+          <div>
+            <%= submit_tag("Search") %>
+          </div>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>

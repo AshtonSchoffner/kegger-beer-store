@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :brewers, only: %i[index show]
-  resources :beers, only: %i[index show]
+  resources :beers, only: %i[index show] do
+    collection do
+      get "search"
+    end
+  end
   resources :categories, only: %i[index show]
   resources :subcategories, only: %i[show]
   devise_for :admin_users, ActiveAdmin::Devise.config

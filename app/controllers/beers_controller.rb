@@ -6,4 +6,9 @@ class BeersController < ApplicationController
   def show
     @beer = Beer.find(params[:id])
   end
+
+  def search
+    wildcard_search = "%#{params[:keywords]}%"
+    @beers = Beer.where("name LIKE ?", wildcard_search).order("name ASC")
+  end
 end
