@@ -25,11 +25,12 @@
       </div>
 
       <%= form_with(url: search_beers_path, method: :get, local: true) do %>
-        <div>
-          <div>
-            <%= text_field_tag(:keywords, nil, placeholder: "Search Beers") %>
+        <div class=" container row">
+          <div class="col text-right">
+            <%= select_tag(:category_id, options_for_select(@dropdown_categories)) %>
           </div>
-          <div>
+          <div class="col">
+            <%= text_field_tag(:keywords, nil, placeholder: "Search Beers") %>
             <%= submit_tag("Search") %>
           </div>
         </div>

@@ -1,8 +1,16 @@
 <div class="container">
-  <h3>Searching for: <%= params[:keywords] %></h3>
-  <h3>Found: <%= pluralize(@beers.count, "Beer") %></h3>
-  <h3>Category: /</h3>
   <div class="row">
-    <%= render partial: "beer", collection: @beers, locals: {beer_link: true, show_details: false} %>
+    <h3 class="col">Searching for: <%= params[:keywords] %></h3>
+    <% if @category != "All Categories" %>
+      <h3 class="col">Category: <%= @category.name %></h3>
+    <% else %>
+      <h3 class="col">Category: All Categories</h3>
+    <% end %>
   </div>
+
+  <%= paginate(@beers) %>
+    <div class="row">
+      <%= render partial: "beer", collection: @beers, locals: {beer_link: true, show_details: false} %>
+    </div>
+  <%= paginate(@beers) %>
 </div>
