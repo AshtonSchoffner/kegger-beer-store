@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '56595460762d412a8033c41f3ef43f5cd7812563de4051502dc16f728d94b3acbd1178d55ab058d22e8b72df8e7686d23e5cafce9c0b73297b736feb204375e0'
+  # config.secret_key = '06071f2c6a3464c13a951001b08c809dd9a2852cda12755d5effccc55584448e66c6a53097f12eff5f32a5d132d844d48ce9cf9a7c7a3e0e5362d90a7298f667'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:login]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '8f688e697205cfa437fb0693b7fc400cb119b7e85b74f83ea3f9b40d5f3082d027fafee0ba39193e42d14d51780570d426c1f5d414a66d493d06133531f2371f'
+  # config.pepper = 'fe56c563e9110842d3532cf064f135d31dac8daff8414046e1725e4961cfaac931ccf408c7f3d44b2d28777783b8b091ac1f5c63db3250dc1f1550e7b48a4ca1'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

@@ -93,6 +93,6 @@ beer_data.each do |beer|
   end
 end
 
-# if Rails.env.development?
-#   AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
-# end
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
+end
