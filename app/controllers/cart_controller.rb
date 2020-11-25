@@ -12,7 +12,7 @@ class CartController < ApplicationController
     beer = Beer.find(id)
     flash[:notice] = "#{beer.name} added to cart."
 
-    if root_path = request.env["PATH_INFO"]
+    if root_path == request.env["PATH_INFO"]
       redirect_to root_path
     else
       redirect_to cart_index_url
