@@ -13,7 +13,9 @@ class BeersController < ApplicationController
       @category = Category.find(params[:category_id])
       @subcategories = Subcategory.where("category_id = ?", params[:category_id])
       @beers = Beer.includes(:subcategory)
-                   .where("name LIKE ? AND subcategory_id IN (?)", wildcard_search, @subcategories.ids)
+                   .where("name LIKE ? AND subcategory_id IN (?)",
+                          wildcard_search,
+                          @subcategories.ids)
                    .order("name ASC")
                    .page(params[:page]).per(30)
     else

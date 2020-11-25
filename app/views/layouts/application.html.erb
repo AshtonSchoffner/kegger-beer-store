@@ -21,6 +21,7 @@
           <li class="nav-item"><%= link_to "Beers", beers_path %></li>
           <li class="nav-item"><%= link_to "Brewers", brewers_path %></li>
           <li class="nav-item"><%= link_to "Categories", categories_path %></li>
+          <li><%= link_to image_tag("cart-icon.jpg", width: 60), cart_index_url %></li>
         </ul>
       </div>
 
@@ -34,6 +35,9 @@
             <%= submit_tag("Search") %>
           </div>
         </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
       <% end %>
 
       <%= yield %>

@@ -20,6 +20,11 @@
         <p><%= beer.quantity %></p>
         <p><%= beer.brewer.country.name %></p>
       <% end %>
+
+        <%= form_with url: cart_index_path do %>
+          <%= hidden_field_tag(:id, beer.id) %>
+          <%= button_tag "Add to Cart" %>
+        <% end %>
     </div>
   </div>
 </div>

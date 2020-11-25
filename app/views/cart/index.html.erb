@@ -1,0 +1,47 @@
+<div class="container">
+  <h3>Shopping Cart</h3>
+  <div class="card">
+    <div class="card-header">
+      <%= pluralize(@beers.size, "Item") %>
+    </div>
+    <ul class="list-group">
+      <% @beers.each do |beer| %>
+        <li class="list-group-item">
+          <div class="row">
+            <p class="col"><%= beer.name %></p>
+            <p class="col"><%= beer.size %></p>
+            <p class="col">Price: <%= number_to_currency(beer.price) %></p>
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <%= form_with url: cart_index_path do %>
+                    <%= hidden_field_tag(:id, beer.id) %>
+                    <%= button_tag "+" %>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <%= @beer_quantities[beer.id.to_s] %>
+                </div>
+                <div class="col">
+                  <%= button_to cart_path(beer.id), method: :patch do %>
+                    <%= "-"%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <p class="col">Total: <%= number_to_currency(beer.price * @beer_quantities[beer.id.to_s])%></p>
+            <%= button_to cart_path(beer.id), method: :delete do %>
+              <%= "Remove Item".pluralize(@beer_quantities[beer.id.to_s]) %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <div class="row">
+          <p class="col-10 text-right">Total: <%= number_to_currency(@total) %></p>
+        </div>
+      </li>
+    <ul>
+  </div>
+</div>

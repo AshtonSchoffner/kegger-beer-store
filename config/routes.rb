@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :brewers, only: %i[index show]
   resources :beers, only: %i[index show] do
     collection do
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   end
   resources :categories, only: %i[index show]
   resources :subcategories, only: %i[show]
+  resources :cart, only: %i[create destroy index update]
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

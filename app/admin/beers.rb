@@ -1,5 +1,6 @@
 ActiveAdmin.register Beer do
-  permit_params :name, :price, :alcohol_vol, :size, :quantity, :description, :brewer_id, :subcategory_id, :image
+  permit_params :name, :price, :alcohol_vol, :size, :quantity, :description, :brewer_id,
+                :subcategory_id, :image
 
   form do |f|
     f.semantic_errors
