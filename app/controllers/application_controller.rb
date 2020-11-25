@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_session
-    session[:cart] ||= []
+    session[:cart] ||= {}
   end
 end
