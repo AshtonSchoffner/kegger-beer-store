@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_214212) do
+ActiveRecord::Schema.define(version: 2020_11_28_222403) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 2020_11_28_214212) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.float "gst"
+    t.float "pst"
+    t.float "hst"
+    t.float "grandtotal"
+    t.string "address"
+    t.integer "province_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["province_id"], name: "index_orders_on_province_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "name"
     t.float "gst"
@@ -133,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_214212) do
   add_foreign_key "beers", "brewers"
   add_foreign_key "beers", "subcategories"
   add_foreign_key "brewers", "countries"
+  add_foreign_key "orders", "provinces"
+  add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "users", "provinces"
 end
