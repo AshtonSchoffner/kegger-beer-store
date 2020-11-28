@@ -14,12 +14,13 @@ Brewer.destroy_all
 Country.destroy_all
 Subcategory.destroy_all
 Category.destroy_all
+User.destroy_all
 Province.destroy_all
 
 province_data.each do |province|
-  hst = province["hst"] ||= 1
-  pst = province["pst"] ||= 1
-  gst = province["gst"] ||= 1
+  hst = province["hst"] ||= 0
+  pst = province["pst"] ||= 0
+  gst = province["gst"] ||= 0
 
   Province.create(
     name: province["name"],
