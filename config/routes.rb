@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :brewers, only: %i[index show]
   resources :beers, only: %i[index show] do
     collection do

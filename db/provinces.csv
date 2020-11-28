@@ -1,0 +1,14 @@
+name,abbrev,gst,pst,hst
+Alberta,AB,5,,
+British Columbia,BC,5,7,
+Saskatchewan,SK,5,6,
+Manitoba,MB,5,7,
+Ontario,ON,,,13
+Quebec,QC,5,9.975,
+Newfoundland and Labrador,NL,,,15
+New Brunswick,NB,,,15
+Nova Scotia,NS,,,15
+Prince Edward Island,PEI,,,15
+Yukon,YT,5,,
+Northwest Territories,NT,5,,
+Nunavut,NU,5,,

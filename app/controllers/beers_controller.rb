@@ -20,7 +20,10 @@ class BeersController < ApplicationController
                    .page(params[:page]).per(30)
     else
       @category = "All Categories"
-      @beers = Beer.includes(:subcategory).where("name LIKE ?", wildcard_search).order("name ASC")
+      @beers = Beer.includes(:subcategory)
+                   .where("name LIKE ?", wildcard_search)
+                   .order("name ASC")
+                   .page(params[:page]).per(30)
     end
   end
 end

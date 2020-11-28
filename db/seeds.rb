@@ -1,23 +1,33 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require "csv"
 
-file = File.join(Rails.root, "db", "liquor_mart.csv")
+file = Rails.root.join("db/liquor_mart.csv")
 data = File.read(file)
 beer_data = CSV.parse(data, headers: true)
 blank_values = ["null", "", "NULL"]
+
+file = Rails.root.join("db/provinces.csv")
+data = File.read(file)
+province_data = CSV.parse(data, headers: true)
 
 Beer.destroy_all
 Brewer.destroy_all
 Country.destroy_all
 Subcategory.destroy_all
 Category.destroy_all
+Province.destroy_all
+
+province_data.each do |province|
+  hst = province["hst"] ||= 1
+  pst = province["pst"] ||= 1
+  gst = province["gst"] ||= 1
+
+  Province.create(
+    name: province["name"],
+    gst:  gst,
+    pst:  pst,
+    hst:  hst
+  )
+end
 
 beer_data.each do |beer|
   country = Country.find_or_create_by(
@@ -93,6 +103,8 @@ beer_data.each do |beer|
   end
 end
 
-# if Rails.env.development?
-#   AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
-# end
+if Rails.env.development?
+  AdminUser.create!(email:                 "admin@example.com",
+                    password:              "password",
+                    password_confirmation: "password")
+end
