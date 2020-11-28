@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_224544) do
+ActiveRecord::Schema.define(version: 2020_11_27_223442) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -120,7 +120,10 @@ ActiveRecord::Schema.define(version: 2020_11_25_224544) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.string "address"
+    t.integer "province_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -130,4 +133,5 @@ ActiveRecord::Schema.define(version: 2020_11_25_224544) do
   add_foreign_key "beers", "subcategories"
   add_foreign_key "brewers", "countries"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "users", "provinces"
 end

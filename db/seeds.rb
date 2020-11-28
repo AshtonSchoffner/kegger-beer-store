@@ -23,9 +23,9 @@ province_data.each do |province|
 
   Province.create(
     name: province["name"],
-    gst:  province["gst"],
-    pst:  province["pst"],
-    hst:  province["hst"]
+    gst:  gst,
+    pst:  pst,
+    hst:  hst
   )
 end
 
