@@ -12,7 +12,7 @@ class CartController < ApplicationController
     beer = Beer.find(id)
     flash[:notice] = "#{beer.name} added to cart."
 
-    if root_path == request.env["PATH_INFO"]
+    if request.path == root_path
       redirect_to root_path
     else
       redirect_to cart_index_url
@@ -41,11 +41,12 @@ class CartController < ApplicationController
   end
 
   def index
+    @provinces = Province.all.order("name ASC")
     @beer_quantities = session[:cart]
     @beers = Beer.find(@beer_quantities.keys.uniq)
-    @total = 0
+    @subtotal = 0
     @beers.each do |beer|
-      @total += beer.price * @beer_quantities[beer.id.to_s]
+      @subtotal += beer.price * @beer_quantities[beer.id.to_s]
     end
   end
 end

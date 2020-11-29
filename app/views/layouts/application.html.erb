@@ -19,7 +19,14 @@
           </div>
           <div class="col text-right">
             <% if current_user %>
-              <%= current_user.email %>
+              <% if current_user.name %>
+                <%= current_user.name %>
+              <% elsif current_user.username %>
+                <%= current_user.username%>
+              <% else %>
+                <%= current_user.email %>
+              <% end %>
+
               <%= link_to "Edit", edit_user_registration_path %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete%>
             <% else %>
@@ -35,7 +42,7 @@
           <li class="nav-item"><%= link_to "Beers", beers_path %></li>
           <li class="nav-item"><%= link_to "Brewers", brewers_path %></li>
           <li class="nav-item"><%= link_to "Categories", categories_path %></li>
-          <li><%= link_to image_tag("cart-icon.jpg", width: 40), cart_index_url %></li>
+          <li><%= link_to image_tag("cart-icon.jpg", width: 40), @cart_link %></li>
         </ul>
       </div>
 
