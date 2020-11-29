@@ -1,12 +1,13 @@
 <div class="col-4 py-3">
   <div class="card">
-    <div class="card-body">
+    <div class="card-header">
       <% if beer_link %>
         <h5 class="card-title"><%= link_to beer.name, beer %></h5>
       <% else %>
         <h5 class="card-title"><%= beer.name %></h5>
       <% end %>
-
+    </div>
+    <div class="card-body">
       <p class="card-text"><%= beer.size %></p>
 
       <p class="card-text">Price: <%= number_to_currency(beer.price) %></p>

@@ -5,9 +5,10 @@
       <% @brewers.each do |brewer| %>
         <div class="col-4 py-3">
           <div class="card">
-            <div class="card-body">
+            <div class="card-header">
               <h5 class="card-title"><%= link_to brewer.name, brewer %></h5>
-
+            </div>
+            <div class="card-body">
               <p class="card-text"><%= brewer.country.name %></p>
             </div>
           </div>

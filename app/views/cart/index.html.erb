@@ -1,8 +1,11 @@
 <div class="container">
   <h3>Shopping Cart</h3>
+
   <div class="card">
     <div class="card-header">
-      <%= pluralize(@beers.size, "Item") %>
+      <h5 class="card-title">
+        <%= pluralize(@beers.size, "Item") %>
+      </h5>
     </div>
     <ul class="list-group">
       <% @beers.each do |beer| %>
@@ -39,9 +42,30 @@
 
       <li class="list-group-item">
         <div class="row">
-          <p class="col-10 text-right">Total: <%= number_to_currency(@total) %></p>
+          <p class="col-10 text-right">Subtotal: <%= number_to_currency(@subtotal) %></p>
         </div>
       </li>
     <ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Customer Details</h5>
+    </div>
+    <div class="card-body">
+      <%= form_with(url: checkout_index_path, method: :get, local: true) do %>
+        <div class=" container row">
+          <div class="col-6">
+            <%= text_field_tag(:address, current_user[:address], placeholder: "Address", size: 50) %>
+          </div>
+          <div class="col">
+            <%= select_tag(:province, options_from_collection_for_select(@provinces, "id", "name", current_user[:province_id])) %>
+          </div>
+          <div class="col text-right">
+            <%= submit_tag("Checkout") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
