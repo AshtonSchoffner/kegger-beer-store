@@ -29,7 +29,7 @@
       <% if @province.pst != 0%>
         <li class="list-group-item">
           <div class="row">
-            <p class="col-11 text-right">PST @<%= @province.pst %>%: <%= number_to_currency(@pst) %></p>
+            <p class="col-11 text-right">PST @<%= @province.pst %>%: <%= number_to_currency(@taxes["pst"]) %></p>
           </div>
         </li>
       <% end %>
@@ -37,7 +37,7 @@
       <% if @province.gst != 0%>
         <li class="list-group-item">
           <div class="row">
-            <p class="col-11 text-right">GST @<%= @province.gst %>%: <%= number_to_currency(@gst) %></p>
+            <p class="col-11 text-right">GST @<%= @province.gst %>%: <%= number_to_currency(@taxes["gst"]) %></p>
           </div>
         </li>
       <% end %>
@@ -45,7 +45,7 @@
       <% if @province.hst != 0%>
         <li class="list-group-item">
           <div class="row">
-            <p class="col-11 text-right">HST @<%= @province.hst %>%: <%= number_to_currency(@hst) %></p>
+            <p class="col-11 text-right">HST @<%= @province.hst %>%: <%= number_to_currency(@taxes["hst"]) %></p>
           </div>
         </li>
       <% end %>
