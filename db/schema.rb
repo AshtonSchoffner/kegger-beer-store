@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_223442) do
+ActiveRecord::Schema.define(version: 2020_11_29_035906) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -94,6 +94,31 @@ ActiveRecord::Schema.define(version: 2020_11_27_223442) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.float "price"
+    t.integer "beer_id", null: false
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "qunatity"
+    t.index ["beer_id"], name: "index_order_items_on_beer_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "gst"
+    t.float "pst"
+    t.float "hst"
+    t.float "grandtotal"
+    t.string "address"
+    t.integer "province_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["province_id"], name: "index_orders_on_province_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "name"
     t.float "gst"
@@ -122,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_223442) do
     t.string "username"
     t.string "address"
     t.integer "province_id", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -132,6 +158,10 @@ ActiveRecord::Schema.define(version: 2020_11_27_223442) do
   add_foreign_key "beers", "brewers"
   add_foreign_key "beers", "subcategories"
   add_foreign_key "brewers", "countries"
+  add_foreign_key "order_items", "beers"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "provinces"
+  add_foreign_key "orders", "users"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "users", "provinces"
 end
