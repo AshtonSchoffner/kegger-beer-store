@@ -1,15 +1,23 @@
-<div>
+<div class="container">
   <h3>Categories</h3>
-    <div class=>
-      <% @categories.each do |category| %>
-        <details>
-          <summary><%= link_to category.name, category %></summary>
-          <ul>
-            <% category.subcategories.each do |subcategory| %>
-              <li><%= link_to subcategory.name, subcategory %></li>
-            <% end %>
-          </ul>
-        </details>
-      <% end %>
+    <div class="card">
+      <div class="list-group">
+        <% @categories.each do |category| %>
+          <details class="list-group-item">
+            <summary><%= link_to category.name, category %></summary>
+            <ul class="list-group pt-2">
+              <div class="row">
+                <% @subcategories.each do |subcategory| %>
+                  <% if subcategory.category_id == category.id%>
+                    <div class="col-3">
+                      <li class="list-group-item"><%= link_to subcategory.name, subcategory %></li>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </ul>
+          </details>
+        <% end %>
+      </div>
     </div>
 </div>

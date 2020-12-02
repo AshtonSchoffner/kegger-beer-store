@@ -10,32 +10,28 @@
     <ul class="list-group">
       <% @beers.each do |beer| %>
         <li class="list-group-item">
+          <p><%= beer.name %></p>
           <div class="row">
-            <p class="col"><%= beer.name %></p>
-            <p class="col"><%= beer.size %></p>
-            <p class="col">Price: <%= number_to_currency(beer.price) %></p>
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <%= form_with url: cart_index_path do %>
-                    <%= hidden_field_tag(:id, beer.id) %>
-                    <%= button_tag "+" %>
-                  <% end %>
-                </div>
-                <div class="col">
-                  <%= @beer_quantities[beer.id.to_s] %>
-                </div>
-                <div class="col">
-                  <%= button_to cart_path(beer.id), method: :patch do %>
-                    <%= "-"%>
-                  <% end %>
-                </div>
-              </div>
+            <p class="col-3"><%= beer.size %></p>
+            <p class="col-2"><%= number_to_currency(beer.price) %></p>
+            <div class="col-2 d-inline-flex justify-content-between">
+              <%= form_with url: cart_index_path do %>
+                <%= hidden_field_tag(:id, beer.id) %>
+                <%= button_tag "+" %>
+              <% end %>
+
+              <%= @beer_quantities[beer.id.to_s] %>
+
+              <%= button_to cart_path(beer.id), method: :patch do %>
+                <%= "-"%>
+              <% end %>
             </div>
-            <p class="col">Total: <%= number_to_currency(beer.price * @beer_quantities[beer.id.to_s])%></p>
-            <%= button_to cart_path(beer.id), method: :delete do %>
-              <%= "Remove Item".pluralize(@beer_quantities[beer.id.to_s]) %>
-            <% end %>
+            <p class="col-3 text-right">Total: <%= number_to_currency(beer.price * @beer_quantities[beer.id.to_s])%></p>
+            <div class="col-2">
+              <%= button_to cart_path(beer.id), method: :delete do %>
+                <%= "Remove" %>
+              <% end %>
+            </div>
           </div>
         </li>
       <% end %>
@@ -54,14 +50,14 @@
     </div>
     <div class="card-body">
       <%= form_with(url: checkout_index_path, method: :get, local: true) do %>
-        <div class=" container row">
-          <div class="col-6">
-            <%= text_field_tag(:address, current_user[:address], placeholder: "Address", size: 50) %>
+        <div class="row">
+          <div class="col-sm-5  col-lg-6">
+            <%= text_field_tag(:address, current_user[:address], placeholder: "Address", class:"w-100") %>
           </div>
-          <div class="col">
-            <%= select_tag(:province, options_from_collection_for_select(@provinces, "id", "name", current_user[:province_id])) %>
+          <div class="col-sm-5 col-lg-4">
+            <%= select_tag(:province, options_from_collection_for_select(@provinces, "id", "name", current_user[:province_id]), class:"w-100") %>
           </div>
-          <div class="col text-right">
+          <div class="col-2 text-right">
             <%= submit_tag("Checkout") %>
           </div>
         </div>
