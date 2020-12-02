@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :subcategories, only: %i[show]
   resources :cart, only: %i[create destroy index update]
   resources :checkout, only: %i[index]
+  resources :orders, only: %i[index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

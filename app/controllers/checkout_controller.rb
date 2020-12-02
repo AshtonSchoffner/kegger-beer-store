@@ -9,6 +9,7 @@ class CheckoutController < ApplicationController
 
     order = create_order(@province.id, @taxes, @total)
     create_order_items(order, @beers, @beer_quantities)
+    session[:cart] = {}
   end
 
   def calculate_subtotal(beers, quantities)
