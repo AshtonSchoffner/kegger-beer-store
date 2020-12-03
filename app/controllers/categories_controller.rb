@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.includes(:subcategories).order("name ASC")
+    @subcategories = Subcategory.all.order("name ASC")
   end
 
   def show

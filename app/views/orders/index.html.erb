@@ -1,0 +1,55 @@
+<div class="container">
+  <h3>My Orders</h3>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title">Date Ordered</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-right">GST</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-right">PST</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-right">HST</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-right">Total</h5>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group">
+      <% @orders.each do |order|%>
+        <li class="list-group-item">
+          <details>
+            <summary class="row">
+              <p class="col"><%= order.created_at %></p>
+              <p class="col text-right"><%= number_to_currency(order.gst) %></p>
+              <p class="col text-right"><%= number_to_currency(order.pst) %></p>
+              <p class="col text-right"><%= number_to_currency(order.hst) %></p>
+              <p class="col text-right"><%= number_to_currency(order.grandtotal) %></p>
+            </summary>
+            <ul class="list-group">
+              <% @order_items.each do |item| %>
+                <% if item.order_id == order.id%>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <p class="col"><%= item.beer.name %></p>
+                      <p class="col">Price: <%= number_to_currency(item.price) %></p>
+                      <p class="col">Quantity: <%= item.quantity %></p>
+                      <p class="col">Totoal: <%= number_to_currency(item.price * item.quantity) %></p>
+                    </div>
+                  </li>
+                <%end%>
+              <% end %>
+            </ul>
+          </details>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
+
